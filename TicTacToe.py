@@ -19,7 +19,7 @@ def main():
             if event.type == pygame.QUIT :
                 running = False
 
-class TicTacTow ():
+class TicTacTow ():Test
     board = [' ',' ',' ',
              ' ',' ',' ',
              ' ',' ', ' ']
