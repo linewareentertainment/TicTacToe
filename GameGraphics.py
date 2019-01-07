@@ -1,8 +1,6 @@
 import pygame
 import Game as game
 
-game_player = "X"
-
 def drawBoard(ttt):
     background = pygame.Surface(ttt.get_size())
     background = background.convert()
@@ -29,25 +27,7 @@ def drawBoard(ttt):
 
     return background
 
-def boardPos(mouseX, mouseY):
-    if(mouseX < 100):
-        row = 0
-    elif(mouseX < 200):
-        row = 1
-    else: row = 2
-
-    if (mouseY < 100):
-        col = 0
-    elif (mouseY < 200):
-        col = 1
-    else:
-        col = 2
-
-    return (row, col)
-
-
-def drawMove(board, row, col):
-    global game_player
+def drawMove(board, row, col, game_player):
     centerX = ((row) * 100) + 50
     centerY = ((col) * 100) + 50
 
@@ -71,16 +51,22 @@ def drawMove(board, row, col):
     game.choose_square(row,col,game_player)
 
 
-def boardClick(board):
-    global game_player
+def boardClick(board, game_player):
     (mouseX,mouseY) = pygame.mouse.get_pos()
-    (row, col) = boardPos(mouseX,mouseY)
+    (row, col) = game.boardPos(mouseX,mouseY)
 
-    drawMove(board,row,col)
+    drawMove(board,row,col, game_player)
 
-    game_player = game.change_player(game_player)
+def drawStatus(board, message):
+    font = pygame.font.Font(None, 24)
+    text = font.render(message, 1, (10,10,10))
 
-def showBoard(ttt, board):
+    board.fill((250,250,250),(0,300,300,25))
+    board.blit(text, (10,300))
+
+def showBoard(ttt, board, game_player, game_over):
+    drawStatus(board, "Winner is " + game_player
+    if game_over == True else " ")
     ttt.blit(board, (0,0))
     pygame.display.flip()
 
