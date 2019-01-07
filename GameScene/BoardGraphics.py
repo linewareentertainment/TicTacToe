@@ -1,5 +1,6 @@
 import pygame
-import Game as game
+from GameScene import GameMechanics as game
+
 
 def drawBoard(ttt):
     background = pygame.Surface(ttt.get_size())

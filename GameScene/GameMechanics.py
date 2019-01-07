@@ -55,7 +55,7 @@ def is_game_over(game_player):
         if(game_board[0][0] ==
                 game_board[1][1] ==
                 game_board[2][2] and
-                game_board[0][2] is not " "):
+                game_board[0][0] is not " "):
             print("3Winner is " + game_player)
             return True
 
