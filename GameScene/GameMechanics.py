@@ -1,4 +1,5 @@
 import pygame
+from Constants import *
 '''
     Rules of Tic Tac Toe
     Rule 1: the game is played on a 3x3 grid
@@ -10,10 +11,6 @@ import pygame
 
     By: Jason Sykes
 '''
-game_board = [[" "] * 3 for _ in range(3)]
-
-def new_game():
-    game_board = [[" "] * 3 for _ in range(3)]
 
 def build_board(ttt):
     background = pygame.Surface(ttt.get_size())

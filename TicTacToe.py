@@ -1,11 +1,18 @@
 import pygame
+from Constants import *
 from GameScene import GameMechanics \
     as game, BoardGraphics
 
 pygame.init()
 
+'''
+    Next time we are going to put the menu on the board.
+    Also we are going to have the winner screen pop up
+    instead of show at the bottom.
+'''
+
 #this is ttt
-screen = pygame.display.set_mode((300,325))
+screen = pygame.display.set_mode((W_SIZE, H_SIZE))
 board = BoardGraphics.drawBoard(screen)
 
 game_player = "X"
