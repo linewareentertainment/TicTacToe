@@ -4,7 +4,7 @@ This is the python tic tac toe menu
 by: Jason Sykes
 '''
 
-#These are the imports
+# These are the imports
 from pygame.locals import *
 from random import randrange
 import os
@@ -12,6 +12,8 @@ import pygame
 
 # Import pygameMenu
 import pygameMenu
+
+from GameScene import MiniMax
 from Constants import *
 from GameScene import GameMechanics \
     as game, BoardGraphics
@@ -84,8 +86,8 @@ def play_function(difficulty, font):
 
     screen = pygame.display.set_mode((W_SIZE, H_SIZE))
 
+    game_player = -1
     game_over = False
-    game_player = "X"
     board = BoardGraphics.drawBoard(screen)
 
     while True:
@@ -106,9 +108,10 @@ def play_function(difficulty, font):
                 continue
             elif e.type is pygame.MOUSEBUTTONDOWN:
                 BoardGraphics.boardClick(board, game_player)
-                game_over = game.is_game_over(game_player)
+                game_over = game.is_game_over(game_board, game_player)
                 if not game_over:
                     game_player = game.change_player(game_player)
+                    MiniMax.ai_move(game_board, game_player)
 
         # Pass events to main_menu
         main_menu.mainloop(playevents)
@@ -121,6 +124,7 @@ def play_function(difficulty, font):
         # pygame.display.flip()
 
 
+# ------------------------------------------------------------------------------
 def main_background():
     """
     Function used by menus, draw on background while menu is active.
